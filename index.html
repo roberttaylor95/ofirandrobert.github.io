@@ -11,85 +11,27 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --cream: #FAF8F3;
-      --warm-white: #FFFDF9;
-      --ink: #1C1A17;
-      --ink-muted: #5C574F;
-      --ink-faint: #9C9589;
-      --gold: #B89A6A;
       --gold-light: #E8D9C0;
-      --gold-pale: #F5EFE3;
-      --rust: #8B4F3A;
-      --sage: #6B7C6A;
-      --border: rgba(184, 154, 106, 0.25);
-      --border-strong: rgba(184, 154, 106, 0.5);
     }
 
-    html { scroll-behavior: smooth; }
+    html, body { height: 100%; }
 
     body {
       font-family: 'DM Sans', sans-serif;
-      background: var(--cream);
-      color: var(--ink);
       font-weight: 300;
-      line-height: 1.7;
-      overflow-x: hidden;
+      overflow: hidden;
     }
 
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      padding: 1.25rem 3rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(250, 248, 243, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 0.5px solid var(--border);
-    }
-
-    .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      color: var(--ink);
-      text-decoration: none;
-      text-transform: uppercase;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--ink-muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--gold); }
-
-    /* HERO */
     .hero {
-      min-height: 100vh;
+      height: 100vh;
+      width: 100vw;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 8rem 2rem 4rem;
+      padding: 2rem;
       position: relative;
-      overflow: hidden;
       background-image: url('CactusJoesWedding_RobertandOfir-190.jpg');
       background-size: cover;
       background-position: center top;
@@ -105,7 +47,11 @@
         rgba(28, 26, 23, 0.35) 50%,
         rgba(28, 26, 23, 0.6) 100%
       );
-      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
     }
 
     .hero-eyebrow {
@@ -130,11 +76,6 @@
       text-shadow: 0 2px 24px rgba(0,0,0,0.3);
     }
 
-    .hero-names em {
-      font-style: italic;
-      color: var(--gold-light);
-    }
-
     .hero-ampersand {
       display: block;
       font-family: 'Cormorant Garamond', serif;
@@ -143,16 +84,6 @@
       font-weight: 300;
       color: rgba(255,255,255,0.6);
       margin: 0.4rem 0;
-    }
-
-    .hero-tagline {
-      margin-top: 2.5rem;
-      font-size: 0.85rem;
-      font-weight: 300;
-      letter-spacing: 0.08em;
-      color: rgba(255,255,255,0.7);
-      opacity: 0;
-      animation: fadeUp 1s ease 0.7s forwards;
     }
 
     .hero-divider {
@@ -164,460 +95,33 @@
       animation: fadeUp 1s ease 0.6s forwards;
     }
 
-    .hero-scroll {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      opacity: 0;
-      animation: fadeUp 1s ease 1.2s forwards;
-    }
-
-    .hero-scroll span {
-      font-size: 0.62rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-    }
-
-    .scroll-line {
-      width: 0.5px;
-      height: 40px;
-      background: linear-gradient(to bottom, var(--gold), transparent);
-      animation: scrollPulse 2s ease-in-out infinite;
-    }
-
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.4; transform: scaleY(1); }
-      50% { opacity: 1; transform: scaleY(1.1); }
-    }
-
-    /* SECTIONS */
-    section {
-      padding: 6rem 2rem;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .section-label {
-      font-size: 0.65rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1rem;
-      display: block;
-    }
-
-    .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
+    .hero-tagline {
+      font-size: 0.85rem;
       font-weight: 300;
-      line-height: 1.15;
-      color: var(--ink);
-      margin-bottom: 2rem;
-    }
-
-    .section-title em { font-style: italic; color: var(--gold); }
-
-    /* ABOUT */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      margin-top: 3rem;
-    }
-
-    .about-card {
-      padding: 2.5rem;
-      background: var(--warm-white);
-      border: 0.5px solid var(--border);
-      border-radius: 2px;
-      position: relative;
-    }
-
-    .about-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--gold), transparent);
-    }
-
-    .about-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8rem;
-      font-weight: 300;
-      font-style: italic;
-      color: var(--ink);
-      margin-bottom: 0.25rem;
-    }
-
-    .about-role {
-      font-size: 0.68rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.25rem;
-    }
-
-    .about-text {
-      font-size: 0.9rem;
-      color: var(--ink-muted);
-      line-height: 1.8;
-    }
-
-    /* EVENTS */
-    .events-section {
-      border-top: 0.5px solid var(--border);
-      padding-top: 6rem;
-    }
-
-    .events-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
-
-    .event-card {
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      gap: 2rem;
-      align-items: center;
-      padding: 2rem 2.5rem;
-      background: var(--warm-white);
-      border: 0.5px solid var(--border);
-      border-radius: 2px;
-      text-decoration: none;
-      color: inherit;
-      transition: border-color 0.25s, transform 0.25s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .event-card::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: var(--gold);
-      transform: scaleY(0);
-      transition: transform 0.25s;
-      transform-origin: top;
-    }
-
-    .event-card:hover {
-      border-color: var(--border-strong);
-      transform: translateX(4px);
-    }
-
-    .event-card:hover::after { transform: scaleY(1); }
-
-    .event-date-block {
-      text-align: center;
-      min-width: 64px;
-    }
-
-    .event-month {
-      font-size: 0.62rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      display: block;
-    }
-
-    .event-day {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.5rem;
-      font-weight: 300;
-      line-height: 1;
-      color: var(--ink);
-    }
-
-    .event-year {
-      font-size: 0.68rem;
-      color: var(--ink-faint);
-      display: block;
       letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.7);
+      opacity: 0;
+      animation: fadeUp 1s ease 0.7s forwards;
     }
 
-    .event-info-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      font-weight: 400;
-      color: var(--ink);
-      margin-bottom: 0.2rem;
-    }
-
-    .event-info-sub {
-      font-size: 0.78rem;
-      color: var(--ink-faint);
-      letter-spacing: 0.04em;
-    }
-
-    .event-badge {
-      font-size: 0.6rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      padding: 0.35rem 0.85rem;
-      border: 0.5px solid var(--border-strong);
-      border-radius: 1px;
-      color: var(--ink-muted);
-      white-space: nowrap;
-    }
-
-    .event-badge.coming-soon {
-      border-color: var(--gold);
-      color: var(--gold);
-    }
-
-    /* PLACEHOLDER EVENT */
-    .event-placeholder {
-      padding: 3rem;
-      border: 0.5px dashed var(--border-strong);
-      border-radius: 2px;
-      text-align: center;
-      color: var(--ink-faint);
-      margin-top: 1.5rem;
-    }
-
-    .event-placeholder p {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
-      font-style: italic;
-      font-weight: 300;
-    }
-
-    /* CITY SECTION */
-    .city-section {
-      border-top: 0.5px solid var(--border);
-      padding-top: 6rem;
-    }
-
-    .city-items {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
-
-    .city-item {
-      padding: 1.75rem;
-      border: 0.5px solid var(--border);
-      border-radius: 2px;
-      background: var(--warm-white);
-    }
-
-    .city-item-label {
-      font-size: 0.62rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.5rem;
-      display: block;
-    }
-
-    .city-item-value {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.25rem;
-      font-weight: 400;
-      color: var(--ink);
-    }
-
-    /* FOOTER */
-    footer {
-      border-top: 0.5px solid var(--border);
-      padding: 3rem 2rem;
-      text-align: center;
-    }
-
-    .footer-names {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      font-style: italic;
-      font-weight: 300;
-      color: var(--ink);
-      margin-bottom: 0.5rem;
-    }
-
-    .footer-sub {
-      font-size: 0.7rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--ink-faint);
-    }
-
-    /* ANIMATIONS */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* MOBILE */
-    @media (max-width: 680px) {
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { gap: 1.5rem; }
-      .about-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-      .city-items { grid-template-columns: 1fr 1fr; }
-      .event-card { grid-template-columns: auto 1fr; }
-      .event-badge { display: none; }
-    }
-
-    @media (max-width: 480px) {
-      .nav-links { display: none; }
-      .city-items { grid-template-columns: 1fr; }
-    }
   </style>
 </head>
 <body>
-
-  <!-- NAV -->
-  <nav>
-    <a href="#" class="nav-logo">Robert & Ofir</a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#events">Events</a></li>
-      <li><a href="#orlando">Our City</a></li>
-    </ul>
-  </nav>
-
-  <!-- HERO -->
   <div class="hero">
-    <p class="hero-eyebrow">Welcome to our little corner of the internet</p>
-    <h1 class="hero-names">
-      Robert
-      <span class="hero-ampersand">&</span>
-      Ofir
-    </h1>
-    <div class="hero-divider"></div>
-    <p class="hero-tagline">Orlando, Florida &nbsp;·&nbsp; Together</p>
-    <div class="hero-scroll">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Welcome to our little corner of the internet</p>
+      <h1 class="hero-names">
+        Ofir
+        <span class="hero-ampersand">&</span>
+        Robert
+      </h1>
+      <div class="hero-divider"></div>
+      <p class="hero-tagline">Orlando, FL &nbsp;·&nbsp; Together</p>
     </div>
   </div>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <span class="section-label reveal">The two of us</span>
-    <h2 class="section-title reveal">Two people, one <em>very good life</em></h2>
-    <p class="reveal" style="color: var(--ink-muted); font-size: 0.95rem; max-width: 580px; line-height: 1.9;">
-      We're Robert and Ofir — husbands, cat dads, and enthusiastic participants in the good life. This is our little home on the internet. Pull up a chair.
-    </p>
-    <div class="about-grid">
-      <div class="about-card reveal">
-        <p class="about-name">Robert</p>
-        <p class="about-role">VP · J.P. Morgan &nbsp;·&nbsp; The Planner</p>
-        <p class="about-text">Bald by choice, caffeinated by necessity. When not leading programs for 700+ financial advisors, can be found running the laser engraver, building playlists for parties nobody's thrown yet, and strongly advocating for his cat Perry's status as the superior cat.</p>
-      </div>
-      <div class="about-card reveal">
-        <p class="about-name">Ofir</p>
-        <p class="about-role">The One With the Mustache &nbsp;·&nbsp; The Anchor</p>
-        <p class="about-text">Keeps the household grounded while Robert is off planning events six months in advance. A steadying presence, a great travel companion, and the reason Chava gets any attention at all. Possibly the better cook. (Robert disputes this.)</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- EVENTS -->
-  <section id="events" class="events-section">
-    <span class="section-label reveal">What's coming up</span>
-    <h2 class="section-title reveal">Gatherings &amp; <em>Adventures</em></h2>
-    <p class="reveal" style="color: var(--ink-muted); font-size: 0.95rem; max-width: 520px; line-height: 1.9;">
-      We like to celebrate. Check back here for updates on events, trips, and any excuse to get people together.
-    </p>
-
-    <div class="events-grid reveal">
-
-      <!-- NYE 2026 — MAIN EVENT -->
-      <div class="event-card">
-        <div class="event-date-block">
-          <span class="event-month">Dec</span>
-          <span class="event-day">31</span>
-          <span class="event-year">2026</span>
-        </div>
-        <div class="event-info">
-          <p class="event-info-title">Go to Prom With Us</p>
-          <p class="event-info-sub">New Year's Eve 2026 &nbsp;·&nbsp; Orlando, FL &nbsp;·&nbsp; Details coming soon</p>
-        </div>
-        <span class="event-badge coming-soon">Coming Soon</span>
-      </div>
-
-      <!-- PLACEHOLDER 2 -->
-      <div class="event-card" style="opacity: 0.5; pointer-events: none;">
-        <div class="event-date-block">
-          <span class="event-month">2026</span>
-          <span class="event-day" style="font-size: 1.5rem; line-height: 2;">TBD</span>
-        </div>
-        <div class="event-info">
-          <p class="event-info-title">Mediterranean Cruise</p>
-          <p class="event-info-sub">Barcelona to Rome &nbsp;·&nbsp; August 2026 &nbsp;·&nbsp; Private trip</p>
-        </div>
-        <span class="event-badge">Private</span>
-      </div>
-
-    </div>
-
-    <div class="event-placeholder reveal" style="margin-top: 2rem;">
-      <p>More events on the horizon &mdash; stay tuned.</p>
-    </div>
-  </section>
-
-  <!-- OUR CITY -->
-  <section id="orlando" class="city-section">
-    <span class="section-label reveal">Home base</span>
-    <h2 class="section-title reveal">Orlando, <em>our way</em></h2>
-    <p class="reveal" style="color: var(--ink-muted); font-size: 0.95rem; max-width: 580px; line-height: 1.9;">
-      We live in the Hourglass District — one of the best pockets of the city, if we say so ourselves. No theme parks. All neighborhood.
-    </p>
-    <div class="city-items reveal">
-      <div class="city-item">
-        <span class="city-item-label">Neighborhood</span>
-        <span class="city-item-value">Hourglass District</span>
-      </div>
-      <div class="city-item">
-        <span class="city-item-label">Residents</span>
-        <span class="city-item-value">Robert, Ofir, Perry & Chava</span>
-      </div>
-      <div class="city-item">
-        <span class="city-item-label">Cats</span>
-        <span class="city-item-value">Two. Both perfect.</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <p class="footer-names">Robert & Ofir</p>
-    <p class="footer-sub">ofirandrobert.com &nbsp;·&nbsp; Orlando, Florida</p>
-  </footer>
-
-  <script>
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver(
-      entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }),
-      { threshold: 0.12 }
-    );
-    reveals.forEach(el => observer.observe(el));
-  </script>
-
 </body>
 </html>
